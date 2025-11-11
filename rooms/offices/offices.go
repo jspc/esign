@@ -10,17 +10,16 @@
 //
 // This section shows you how to create and manage offices.
 //
-//
 // Service Api documentation may be found at:
 // https://developers.docusign.com/docs/rooms-api/reference/Offices
 // Usage example:
 //
-//   import (
-//       "github.com/jfcote87/esign"
-//       "github.com/jfcote87/esign/rooms"
-//   )
-//   ...
-//   officesService := offices.New(esignCredential)
+//	import (
+//	    "github.com/jfcote87/esign"
+//	    "github.com/jfcote87/esign/rooms"
+//	)
+//	...
+//	officesService := offices.New(esignCredential)
 package offices // import "github.com/jfcote87/esignrooms//offices"
 
 import (

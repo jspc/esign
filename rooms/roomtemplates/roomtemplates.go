@@ -10,17 +10,16 @@
 //
 // This section shows you how to retrieve room templates. You can perform additional room template tasks in the console.
 //
-//
 // Service Api documentation may be found at:
 // https://developers.docusign.com/docs/rooms-api/reference/RoomTemplates
 // Usage example:
 //
-//   import (
-//       "github.com/jfcote87/esign"
-//       "github.com/jfcote87/esign/rooms"
-//   )
-//   ...
-//   roomtemplatesService := roomtemplates.New(esignCredential)
+//	import (
+//	    "github.com/jfcote87/esign"
+//	    "github.com/jfcote87/esign/rooms"
+//	)
+//	...
+//	roomtemplatesService := roomtemplates.New(esignCredential)
 package roomtemplates // import "github.com/jfcote87/esignrooms//roomtemplates"
 
 import (

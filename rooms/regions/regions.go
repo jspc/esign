@@ -10,17 +10,16 @@
 //
 // This section shows you how to create and manage regions for a Rooms account.
 //
-//
 // Service Api documentation may be found at:
 // https://developers.docusign.com/docs/rooms-api/reference/Regions
 // Usage example:
 //
-//   import (
-//       "github.com/jfcote87/esign"
-//       "github.com/jfcote87/esign/rooms"
-//   )
-//   ...
-//   regionsService := regions.New(esignCredential)
+//	import (
+//	    "github.com/jfcote87/esign"
+//	    "github.com/jfcote87/esign/rooms"
+//	)
+//	...
+//	regionsService := regions.New(esignCredential)
 package regions // import "github.com/jfcote87/esignrooms//regions"
 
 import (

@@ -10,17 +10,16 @@
 //
 // Your administrator may also have created custom task list templates that can be added to rooms. If your administrator created room templates, those room templates may include task lists for you to use.
 //
-//
 // Service Api documentation may be found at:
 // https://developers.docusign.com/docs/rooms-api/reference/TaskLists
 // Usage example:
 //
-//   import (
-//       "github.com/jfcote87/esign"
-//       "github.com/jfcote87/esign/rooms"
-//   )
-//   ...
-//   tasklistsService := tasklists.New(esignCredential)
+//	import (
+//	    "github.com/jfcote87/esign"
+//	    "github.com/jfcote87/esign/rooms"
+//	)
+//	...
+//	tasklistsService := tasklists.New(esignCredential)
 package tasklists // import "github.com/jfcote87/esignrooms//tasklists"
 
 import (

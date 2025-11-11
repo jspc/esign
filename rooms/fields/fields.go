@@ -10,17 +10,16 @@
 //
 // Information about field sets.
 //
-//
 // Service Api documentation may be found at:
 // https://developers.docusign.com/docs/rooms-api/reference/Fields
 // Usage example:
 //
-//   import (
-//       "github.com/jfcote87/esign"
-//       "github.com/jfcote87/esign/rooms"
-//   )
-//   ...
-//   fieldsService := fields.New(esignCredential)
+//	import (
+//	    "github.com/jfcote87/esign"
+//	    "github.com/jfcote87/esign/rooms"
+//	)
+//	...
+//	fieldsService := fields.New(esignCredential)
 package fields // import "github.com/jfcote87/esignrooms//fields"
 
 import (

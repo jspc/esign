@@ -214,27 +214,21 @@ type ClosingStatus struct {
 	Name string `json:"name,omitempty"`
 }
 
-// ContactSide details about a contact side.
+// ContactSide is the `ContactSides` resource provides a method that enables you to retrieve a list of valid values for transaction contact sides.
 type ContactSide struct {
 	// The id of the contact side.
 	//
 	// Example: `L`
 	ContactSideID string `json:"contactSideId,omitempty"`
-	// The name of the contact side.
-	//
-	// Example: `Listing`
+	// The name of the office.
 	Name string `json:"name,omitempty"`
 }
 
-// Country contains details about a supported country.
+// Country is the `Countries` resource provide a method that enables you to retrieve a list of countries in which you can create an office.
 type Country struct {
-	// The two-letter code for the country.
-	//
-	// Example: `NZ`
+	// The two-letter country code of the office address (for example, "UK" for United Kingdom).
 	CountryID string `json:"countryId,omitempty"`
-	// The name of the country.
-	//
-	// Example: `New Zealand`
+	// The name of the office.
 	Name string `json:"name,omitempty"`
 }
 
@@ -284,31 +278,29 @@ type DesignatedRegion struct {
 	RegionID int32 `json:"regionId,omitempty"`
 }
 
-// Document information about a document. This object is read-only when used as a response.
+// Document contains information about a document.
 type Document struct {
-	// In a response, when the query parameter `includeContents` is **true**, the base64-encoded contents of the document.
-	//
-	// In a request, the base64-encoded contents of the document to add.
+	// The base64-encoded contents of the document. This property is only included in the response when you use the `includeContents` query parameter and set it to **true**.
 	Base64Contents string `json:"base64Contents,omitempty"`
 	//
 	ContentType string `json:"contentType,omitempty"`
-	// The UTC DateTime when the document was created.
+	// The date and time when the document was created. This is a read-only value that the service assigns.
 	//
-	// Example: `2019-07-25T22:18:56.95Z`
+	// Example: `2019-11-11T17:15:14.82`
 	CreatedDate string `json:"createdDate,omitempty"`
 	// The ID of the document.
 	DocumentID int32 `json:"documentId,omitempty"`
-	// The id of the folder the document is in.
+	// The id of the folder that holds the document.
 	FolderID int32 `json:"folderId,omitempty"`
-	// **True** if the document is signed.
+	// When set to **true**, indicates that the document is signed.
 	IsSigned bool `json:"isSigned,omitempty"`
-	// The name of the document.
+	// The file name associated with the document.
 	Name string `json:"name,omitempty"`
 	// The id of the user who owns the document.
 	OwnerID int32 `json:"ownerId,omitempty"`
-	// The id of the room the document belongs to.
+	// The id of the room associated with the document.
 	RoomID int32 `json:"roomId,omitempty"`
-	// The size of the document in bytes. This is the number of bytes in the _decoded_ document, not the size of `base64Contents`.
+	// The size of the document in bytes.
 	Size int64 `json:"size,omitempty"`
 }
 
@@ -363,13 +355,13 @@ type ESignAccountRoleSettings struct {
 	AllowAccountManagement bool `json:"allowAccountManagement,omitempty"`
 }
 
-// ESignPermissionProfile when you create or invite a new member in Rooms, the system creates an eSignature account for the member at the same time.
+// ESignPermissionProfile when an administrator or authorized member invites a new user to become an account member, the system also creates an eSignature account for the invitee at the same time. This object contains information about the eSignature permission profile, which controls member access to the eSignature account.
 type ESignPermissionProfile struct {
 	// When an administrator or authorized member invites a new user to become an account member, the system also creates an eSignature account for the invitee at the same time. The `eSignPermissionProfileId` is the id of the eSignature permission set to assign to the member.
 	ESignPermissionProfileID string `json:"eSignPermissionProfileId,omitempty"`
-	// The name of the eSignature permission profile.
+	// The name of the eSignature permission profile. Valid values are:
 	Name string `json:"name,omitempty"`
-	// The settings associated with the eSignature permission profile.
+	// the eSignature account role settings associated with the permission profile.
 	Settings *ESignAccountRoleSettings `json:"settings,omitempty"`
 }
 
@@ -379,9 +371,9 @@ type ESignPermissionProfileList struct {
 	PermissionProfiles []ESignPermissionProfile `json:"permissionProfiles,omitempty"`
 }
 
-// ExternalFormFillSession this resource provides a method that returns a URL for a new external form fill session, based on the `roomId` and `formId` that you specify in the `formFillSessionForCreate` request body.
+// ExternalFormFillSession contains the URL for the new form fill session.
 type ExternalFormFillSession struct {
-	//
+	// The URL for the new form fill session.
 	URL string `json:"url,omitempty"`
 }
 
@@ -398,7 +390,7 @@ type ExternalFormFillSessionForCreate struct {
 	XFrameAllowedURL string `json:"xFrameAllowedUrl,omitempty"`
 }
 
-// Field is the fields resource provides a method that enables you to retrieve a specific field set. This is a set of fields that can appear on a room's **Details** tab.
+// Field contains details about a field in a field set.
 type Field struct {
 	// The name that the Rooms API uses for the field.
 	//
@@ -408,19 +400,30 @@ type Field struct {
 	APIName string `json:"apiName,omitempty"`
 	// Contains information about how the field is configured, such as the maximum length.
 	Configuration *FieldConfiguration `json:"configuration,omitempty"`
-	//
+	// Contains information about whether the field is required when a room is created or submitted for review.
 	CustomData *CustomData `json:"customData,omitempty"`
 	// The id of the DocuSign field definition from which this field derives. When an Admin user configures a field set by using the API, this is the id that they use to add this field definition to the field set. The original field definition associated with this id contains more information about the field, such as the default title, default API name, and configurations such as the maximum length or the maximum value allowed.
 	FieldDefinitionID string `json:"fieldDefinitionId,omitempty"`
-	// The id of the field.
-	//
-	// Example: `10318d28-xxxx-xxxx-xxxx-d3df664f602c`
-	//
+	// An id that uniquely identifies the instance of a `fieldDefinition` within a field set.
 	FieldID string `json:"fieldId,omitempty"`
-	// An array of fields.
+	// An array of subfields.
 	Fields []Field `json:"fields,omitempty"`
+	// The human-readable title or name of the field.
 	//
+	// Example: `Company contact name`
 	Title string `json:"title,omitempty"`
+	// The type of field. The valid values are:
+	//
+	// - `Date`
+	// - `Text`
+	// - `Checkbox`
+	// - `Currency`
+	// - `Numeric`
+	// - `SelectList`
+	// - `TextArea`
+	// - `Percentage`
+	// - `Integer`
+	//
 	//
 	Type string `json:"type,omitempty"`
 }
@@ -563,21 +566,13 @@ type FieldSet struct {
 type FieldsCustomDataFilterType struct {
 }
 
-// FinancingType contains information about a financing type.
+// FinancingType this resource provides a method that enables you to retrieve a list of financing types.
 type FinancingType struct {
 	// The id of the financing type.
 	//
 	// Example: `conv` (for `Conventional`)
 	FinancingTypeID string `json:"financingTypeId,omitempty"`
-	// The name of the financing type. Possible values are:
-	//
-	// - `Cash`
-	// - `Conventional`
-	// - `FHA`
-	// - `VA`
-	// - `USDA`
-	// - `Bitcoin`
-	// - `Other`
+	// The name of the office.
 	Name string `json:"name,omitempty"`
 }
 
@@ -662,18 +657,20 @@ type FormGroupFormToAssign struct {
 	IsRequired bool `json:"isRequired,omitempty"`
 }
 
-// FormGroupSummary is the `FormGroups` resource enables you to create and manage custom groups of association forms.
+// FormGroupSummary contains details about a form group.
 type FormGroupSummary struct {
-	// The number of forms in the form library.
+	// The number of forms in the form group.
 	//
-	// Example: `50`
+	// Example: `10`
 	FormCount int32 `json:"formCount,omitempty"`
 	// The ID of the form group.
 	//
 	// Example: `7b879c89-xxxx-xxxx-xxxx-819d6a85e0a1`
 	//
 	FormGroupID string `json:"formGroupId,omitempty"`
-	// The name of the office.
+	// The name of the form group.
+	//
+	// Example: `Apartment Rental`
 	Name string `json:"name,omitempty"`
 }
 
@@ -894,7 +891,7 @@ type LockedOutDetails struct {
 type MemberSortingOption struct {
 }
 
-// Office object that contains information about an office in the Rooms account.
+// Office contains information about an office.
 type Office struct {
 	// First line of the office street address.
 	Address1 string `json:"address1,omitempty"`
@@ -904,11 +901,11 @@ type Office struct {
 	City string `json:"city,omitempty"`
 	// The two-letter country code of the office address (for example, "UK" for United Kingdom).
 	CountryID string `json:"countryId,omitempty"`
-	// The UTC DateTime when the office was created.
+	// The UTC date and time when the item was created. This is a read-only value that the service assigns.
 	//
 	// Example: `2019-07-17T17:45:42.783Z`
 	//
-	// **Note**: This value is read-only.
+	//
 	CreatedDate string `json:"createdDate,omitempty"`
 	// The name of the office.
 	Name string `json:"name,omitempty"`
@@ -1022,26 +1019,9 @@ type OfficeSummaryList struct {
 	TotalRowCount int32 `json:"totalRowCount,omitempty"`
 }
 
-// OriginOfLead contains information about an origin of lead.
+// OriginOfLead is the `OriginsOfLeads` resource enables you to get a list of origins of leads (such as Trulia or Zillow) that you can specify for rooms.
 type OriginOfLead struct {
-	// The name of the origin of lead. Possible values are:
-	//
-	// - `Realtor.com`
-	// - `Trulia`
-	// - `Zillow`
-	// - `Company Website`
-	// - `Agent Website`
-	// - `Other Online`
-	// - `Mobile App`
-	// - `Social Media`
-	// - `Personal Referral`
-	// - `Company Referral`
-	// - `Repeat Client`
-	// - `Corporate Relocation`
-	// - `Print Marketing`
-	// - `Prospecting`
-	// - `Other`
-	// - `REO (Real Estate Owned)`
+	// The name of the office.
 	Name string `json:"name,omitempty"`
 	// The id of the origin of lead.
 	//
@@ -1243,9 +1223,13 @@ type RegionSummaryList struct {
 	TotalRowCount int32 `json:"totalRowCount,omitempty"`
 }
 
-// Role this object contains information about a role.
+// Role contains details about a company role.
 type Role struct {
-	// The UTC DateTime when the role was created.
+	// The UTC date and time when the item was created. This is a read-only value that the service assigns.
+	//
+	// Example: `2019-07-17T17:45:42.783Z`
+	//
+	//
 	CreatedDate string `json:"createdDate,omitempty"`
 	// When set to **true**, indicates that this role is currently assigned to a user.
 	IsAssigned bool `json:"isAssigned,omitempty"`
@@ -1256,21 +1240,12 @@ type Role struct {
 	// The legacy name of the role in Rooms Version 5.
 	LegacyRoleID string `json:"legacyRoleId,omitempty"`
 	// The name of the role.
-	//
-	// Examples:
-	//
-	// - `Agent`
-	// - `Default Admin`
 	Name string `json:"name,omitempty"`
 	// An object that contains details about a manager user's permissions.
 	//
 	// **Note**: These permissions only apply to Rooms v5.
 	Permissions *Permissions `json:"permissions,omitempty"`
 	// In Rooms v6, this is the id of the company role assigned to the user.
-	//
-	// You can assign external roles to users who aren't a part of your organization.
-	//
-	// **Note**: If you are using Rooms v6, you must enter a `roleId` in requests. If you are using Rooms v5, you must enter a value for the `titleId` property instead.
 	RoleID int32 `json:"roleId,omitempty"`
 }
 
@@ -1332,7 +1307,7 @@ type RoleSummaryList struct {
 	TotalRowCount int32 `json:"totalRowCount,omitempty"`
 }
 
-// Room is the Rooms resource provides methods that enable you to create and manage rooms. In Rooms for Real Estate, a room is a collaborative digital space corresponding to a specific property. In Rooms for Mortgages, a room corresponds to a specific loan.
+// Room contains details about a room.
 type Room struct {
 	// The UTC date and time when the room was closed.
 	ClosedDate string `json:"closedDate,omitempty"`
@@ -1373,8 +1348,6 @@ type Room struct {
 	// The field data associated with a room. See [Rooms::GetRoomFieldData](/rooms-api/reference/Rooms/Rooms/GetRoomFieldData).
 	FieldData *FieldData `json:"fieldData,omitempty"`
 	// The name of the room.
-	//
-	// Maximum Length: 100 characters.
 	Name string `json:"name,omitempty"`
 	// The id of the office. This is the id that the system generated when you created the office.
 	OfficeID int32 `json:"officeId,omitempty"`
@@ -1478,13 +1451,13 @@ type RoomDocumentOwner struct {
 	UserID int32 `json:"userId,omitempty"`
 }
 
-// RoomFolder information about a room folder.
+// RoomFolder not described in definition file
 type RoomFolder struct {
-	// When **true**, this is the default folder.
+	//
 	IsDefault bool `json:"isDefault,omitempty"`
-	// The name of the folder.
+	// The name of the office.
 	Name string `json:"name,omitempty"`
-	// The ID of the folder.
+	//
 	RoomFolderID int32 `json:"roomFolderId,omitempty"`
 }
 
@@ -1824,9 +1797,19 @@ type SellerDecisionType struct {
 	SellerDecisionTypeID string `json:"sellerDecisionTypeId,omitempty"`
 }
 
-// SpecialCircumstanceType is the `SpecialCircumstanceTypes` resource provides a method that enables you to retrieve a list of special circumstance types, such as `Short Sale` and `Foreclosure`. These are the values that you can select for the **Special circumstances** field that appears on the **Room Details** page.
+// SpecialCircumstanceType contains information about a special circumstance type.
 type SpecialCircumstanceType struct {
-	// The name of the office.
+	// The name of the special circumstance type. Possible values are:
+	//
+	// - `Short Sale`
+	// - `Foreclosure`
+	// - `Corporate Owned`
+	// - `Historical`
+	// - `Investor Owned`
+	// - `HUD`
+	// - `Estate Sale`
+	// - `Relocation`
+	// - `Contingency`
 	Name string `json:"name,omitempty"`
 	// The id of the special circumstance type.
 	//
@@ -2026,9 +2009,9 @@ type TaskListSummaryList struct {
 	TaskListSummaries []TaskListSummary `json:"taskListSummaries,omitempty"`
 }
 
-// TaskListTemplate contains details about a task list template.
+// TaskListTemplate is a task list template is a custom task list that can be added to rooms.
 type TaskListTemplate struct {
-	// The name of the task list template.
+	// The name of the office.
 	Name string `json:"name,omitempty"`
 	// The total number of tasks in the task list template.
 	TaskCount int32 `json:"taskCount,omitempty"`
@@ -2127,15 +2110,9 @@ type TimeZone struct {
 	TimeZoneID string `json:"timeZoneId,omitempty"`
 }
 
-// TransactionSide contains information about a real estate transaction side.
+// TransactionSide is the `TransactionSides` resource provides a method that enables you to list possible real estate transaction sides.
 type TransactionSide struct {
-	// The name of the transaction side. Valid values are:
-	//
-	// - `List Side`
-	// - `Buy Side`
-	// - `List & Buy Side`
-	// - `Refinance`
-	//
+	// The name of the office.
 	Name string `json:"name,omitempty"`
 	// The id of the transaction side. Valid values are:
 	//

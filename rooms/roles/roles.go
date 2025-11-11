@@ -44,17 +44,16 @@
 //
 // Each member inside your company has a default company role. However, they can also be assigned additional roles with different permissions on a per-room basis. Regardless of the member's default company role, what they can do in a room is entirely controlled by their role in that particular room.
 //
-//
 // Service Api documentation may be found at:
 // https://developers.docusign.com/docs/rooms-api/reference/Roles
 // Usage example:
 //
-//   import (
-//       "github.com/jfcote87/esign"
-//       "github.com/jfcote87/esign/rooms"
-//   )
-//   ...
-//   rolesService := roles.New(esignCredential)
+//	import (
+//	    "github.com/jfcote87/esign"
+//	    "github.com/jfcote87/esign/rooms"
+//	)
+//	...
+//	rolesService := roles.New(esignCredential)
 package roles // import "github.com/jfcote87/esignrooms//roles"
 
 import (

@@ -18,17 +18,16 @@
 //
 // Form administrators must have the `canManageFormGroups` permission assigned to their user role. This gives them access to the **Forms** tab in **Admin**. However, you should also consider the user's access level. For example, if the user has access to specific offices, they can only administer form groups for those offices.
 //
-//
 // Service Api documentation may be found at:
 // https://developers.docusign.com/docs/rooms-api/reference/Forms
 // Usage example:
 //
-//   import (
-//       "github.com/jfcote87/esign"
-//       "github.com/jfcote87/esign/rooms"
-//   )
-//   ...
-//   formsService := forms.New(esignCredential)
+//	import (
+//	    "github.com/jfcote87/esign"
+//	    "github.com/jfcote87/esign/rooms"
+//	)
+//	...
+//	formsService := forms.New(esignCredential)
 package forms // import "github.com/jfcote87/esignrooms//forms"
 
 import (
